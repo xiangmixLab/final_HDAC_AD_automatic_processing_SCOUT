@@ -1,0 +1,8 @@
+
+Choose your own adventure
+
+For large data (more than 6 days) proceed to HPC_code
+
+For short data, proceed to CNMF_E-adjusted_code
+
+

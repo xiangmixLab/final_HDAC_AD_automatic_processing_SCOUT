@@ -1,0 +1,23 @@
+Data: D:\final_HDAC_AD_automatic_processing\CNMF_E_pengcheng\cnmfemaster\CNMF_E-master\demos\data_1p_source_extraction\data_64_64_18.mat
+
+--------16-Oct_21_48_33--------
+[21:48:33]Start running source extraction......
+The collection of options are saved as intermediate_results.options_0
+
+[21:48:33]Start initializing neurons from frame 1001 to frame 2000
+
+The spatial components and the background are known already
+[21:48:42]Finished the initialization procedure.
+[21:48:46]Finished updating background using ring model.
+[21:48:46]Start picking neurons from the residual......
+	The collection of options are saved as intermediate_results.options_2
+[21:48:55]Finished the initialization of neurons from the residual video.
+	In total, 68 neurons were detected. 
+[22:11:21]Finished updating spatial components.
+[22:11:43]Finished updating temporal components.
+[22:11:53]Finished updating background using ring model.
+
+--------16-Oct_22_12_36--------
+[22:12:36]Save the current workspace into file 
+	D:\final_HDAC_AD_automatic_processing\CNMF_E_pengcheng\cnmfemaster\CNMF_E-master\demos\data_1p_source_extraction\frames_1001_2000\LOGS_16-Oct_21_48_33\16-Oct_22_12_36.mat
+

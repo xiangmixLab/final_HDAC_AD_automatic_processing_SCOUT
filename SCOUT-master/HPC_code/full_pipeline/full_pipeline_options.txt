@@ -1,0 +1,17 @@
+#Currently all definitions must be on a single line
+
+vids_per_batch=8
+overlap_per_batch=0
+data_type='1p'
+threads=8
+save_file=true;
+conv_uint8=true;
+
+motion_correct=false;
+background_subtract=false;
+from_filtered=false;
+register_sessions=false;
+extract_videos=true;
+
+extraction_options={'JS',.11,'gSiz',15,'max_neurons',500,'corr_noise',true,'min_corr',.3}
+cell_tracking_options={'max_dist',45,'alignment_method',{'similarity','non-rigid'},'overlap',0}

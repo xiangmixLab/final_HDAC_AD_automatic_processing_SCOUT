@@ -1,0 +1,125 @@
+timestampnamehdac={[],['timestamp_training.dat'],['timestamp_testing.dat'];
+                   [],['timestamp_training.dat'],['timestamp_testing.dat'];
+                   [],['timestamp_training.dat'],['timestamp_testing.dat'];
+                   [],['timestamp_training.dat'],['timestamp_testing.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   [],['timestamp_training.dat'],['timestamp_test.dat'];
+                   [],['timestamp_training.dat'],['timestamp_test.dat'];
+                   [],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat']
+                   };
+
+timestampnamead={['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update1.dat'],['timestamp_update2.dat'],['timestamp_testing.dat'],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_testing.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update1.dat'],['timestamp_update2.dat'],['timestamp_testing.dat'],[];
+                   ['timestamp_training.dat'],['timestamp_update1.dat'],['timestamp_update2.dat'],['timestamp_test.dat'],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_testing.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training_part1.dat'],['timestamp_training_part2.dat'],['timestamp_update.dat'],['timestamp_test_part1.dat'],['timestamp_test_part2.dat'];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update.dat'],['timestamp_test.dat'],[],[];
+                   ['timestamp_training.dat'],['timestamp_update1.dat'],['timestamp_update2.dat'],['timestamp_testing.dat'],[];
+                   };
+
+timestampnamead3batch={['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training1.dat'],['timestamp_training2.dat'],['timestamp_training3.dat'],['timestamp_update.dat'],['timestamp_test.dat'];
+                   };
+               
+timestampnamead3batch_sc={['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+};
+
+timestampnamehdac_virus_b1={
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   };
+               
+timestampnamehdac_virus_b2={
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+   };
+
+timestampnamead_FN={
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];
+   ['timestamp_baseline1.dat'],['timestamp_baseline2.dat'],['timestamp_baseline3.dat'],['timestamp_test1_F.dat'],['timestamp_test1_FN.dat'],['timestamp_test2_F.dat'],['timestamp_test2_FN.dat'];   
+   };
+
+timestampnamead_sc2={
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_circle2.dat'],['timestamp_square2.dat'],['timestamp_square3.dat'],['timestamp_circle3.dat'],['timestamp_circle4.dat'],['timestamp_square4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   ['timestamp_circle1.dat'],['timestamp_square1.dat'],['timestamp_square2.dat'],['timestamp_circle2.dat'],['timestamp_circle3.dat'],['timestamp_square3.dat'],['timestamp_square4.dat'],['timestamp_circle4.dat'];
+   };
+
+timestampname_mut_m6={
+['timestamp_training_part0.dat'],['timestamp_training_part1.dat'],['timestamp_training_part2.dat'],['timestamp_update.dat'],['timestamp_test_part1.dat'],['timestamp_test_part2.dat'];
+   };
+
+timestampnamehdac_inject_virus_control_young={
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   ['timestamp_baseline.dat'],['timestamp_training.dat'],['timestamp_test.dat'];
+                   };

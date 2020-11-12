@@ -1,0 +1,42 @@
+
+1. Combine neuron extractions using from the same batch together using combine_neurons_after_extraction and combine_neurons_after_extraction_full. 
+
+2. Combine each extraction for the full experiment, using Combine_Full_Experiment
+
+
+
+
+
+
+Interpretation
+
+
+Quality Measures
+
+overlap_corr: correlations between neurons on the overlap between batches
+overlap_dist: distance between neurons between batches
+scores: aggregate score of neuron quality on a single batch
+combined: number of times a neuron appears in each batch, between all of the extractions performed on that batch.
+
+overlap_corr and combined should be high. Expect the mean combined score to be between 2 and 3 for a good quality neuron, and overlap_corr should be above .6, and preferably higher.
+
+overlap_dist should be low, preferably less than 6. It represents the number of pixels neurons move between batches
+
+scores should be low. It is a linear combination of KL_score and correlation. This is difficult to interpret. The best option is to plot a histogram of scores, and remove neurons that have outlying large scores.
+
+
+
+Outputs
+
+C - calcium fluorescence for individual neurons
+S - extracted spike times for individual neurons (This is not terribly accurate from what we've seen)
+C_raw - raw calcium fluorescence.
+centroid - spatial location of neuron centroid
+A - neuron spatial footprint. 
+
+
+
+
+
+
+
