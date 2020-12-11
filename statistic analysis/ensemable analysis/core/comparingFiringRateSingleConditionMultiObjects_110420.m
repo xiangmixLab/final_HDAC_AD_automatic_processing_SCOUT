@@ -9,22 +9,24 @@ function [sumFiringRate_conv,sumFiringRateObject] = comparingFiringRateSingleCon
 
     sumFiringRateObject = zeros(1,size(posObjects,1));
 
-    
-    for i = 1:size(posObjects,1)
-%         sumFiringRateObject(1,i) =sumFiringRateObject(1,i)+sumFiringRate_conv(size(sumFiringRate_conv,1)-posObjects(i,2)+1+u,posObjects(i,1)+v);
-        sumFiringRateObject(1,i) =0;
-        sum_num=0;
-        for u=-1:1
-            for v=-1:1
-                if ~isnan(sumFiringRate(size(sumFiringRate,1)-posObjects(i,2)+1+u,posObjects(i,1)+v))
-                    sumFiringRateObject(1,i) =sumFiringRateObject(1,i)+sumFiringRate(size(sumFiringRate,1)-posObjects(i,2)+1+u,posObjects(i,1)+v);
-                    sum_num=sum_num+1;
+    if sum(posObjects(:))>0
+        for i = 1:size(posObjects,1)
+    %         sumFiringRateObject(1,i) =sumFiringRateObject(1,i)+sumFiringRate_conv(size(sumFiringRate_conv,1)-posObjects(i,2)+1+u,posObjects(i,1)+v);
+            sumFiringRateObject(1,i) =0;
+            sum_num=0;
+            for u=-1:1 % the obj is large, a larger area may be required (5x5 around obj)
+                for v=-1:1
+                    if size(sumFiringRate,1)-posObjects(i,2)+u>0&&size(sumFiringRate,1)-posObjects(i,2)+u<size(sumFiringRate,1)&&posObjects(i,1)+v>0&&posObjects(i,1)+v<size(sumFiringRate,2)
+                        if ~isnan(sumFiringRate(size(sumFiringRate,1)-posObjects(i,2)+u,posObjects(i,1)+v))
+                            sumFiringRateObject(1,i) =sumFiringRateObject(1,i)+sumFiringRate(size(sumFiringRate,1)-posObjects(i,2)+u,posObjects(i,1)+v);
+                            sum_num=sum_num+1;
+                        end
+                    end
                 end
             end
+            sumFiringRateObject(1,i)=sumFiringRateObject(1,i)/sum_num;
         end
-        sumFiringRateObject(1,i)=sumFiringRateObject(1,i)/sum_num;
     end
-    
 %     sumFiringRate_conv(size(sumFiringRate_conv,1)-posObjects(1,2)+1,posObjects(1,1))=-1;
 %     sumFiringRate_conv(size(sumFiringRate_conv,1)-posObjects(2,2)+1,posObjects(2,1))=-1;
     sumFiringRateObject(isnan(sumFiringRateObject)) = 0;

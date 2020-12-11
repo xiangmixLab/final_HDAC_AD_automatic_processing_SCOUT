@@ -136,7 +136,7 @@ end
 % greedy method for initialization
 tic;
 
-Cn=correlation_image(Y,[],d1s,d2s,[],[],true);
+Cn=correlation_image(Y,[],d1s,d2s,[],1);
 
 if exist('neuron_centers','var')
 

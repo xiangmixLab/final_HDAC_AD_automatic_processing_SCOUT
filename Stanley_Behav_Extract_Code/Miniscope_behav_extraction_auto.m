@@ -212,6 +212,7 @@ behav.ROI3=ROI3;
 % adjust object pos to real box size
 behav.object=behav.object*behav.trackLength/ROI3;
 behav.bg=bg;
+behav.oripath=behavloc;
 behavfile_list{ol}=[filename1,'_','Behav.mat'];
 camera_id_list(ol,:)=[behav.msCam_num,behav.camNumber];
 save([filename1,'_','Behav.mat'], 'behav','velosmallthan3')

@@ -230,7 +230,8 @@ for i10=mrange
     flag=1;
     % save([savepath,'corr_',num2str(mean(cM1f)),'_','gsig',num2str(gSig),'_gsiz',num2str(gSiz),'_',savename,'.mat'],'Mr');
     Y=Mr;
-    save([savepath,num2str(sname),'.mat'],'Y','-v7.3');
+    Ysiz=size(Y);
+    save([savepath,num2str(sname),'.mat'],'Y','Ysiz','-v7.3');
     fname_cell{i10}=[savepath,num2str(sname),'.mat'];
     Ysize=size(Y);
     save([savepath,num2str(sname),'metric.mat'],'cM1f','dtm','Ysize');

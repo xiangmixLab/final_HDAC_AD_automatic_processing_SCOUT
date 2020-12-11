@@ -4,7 +4,7 @@ function behavname=behavfile_move(ori,des,vn,behavfile_list)
 for i=1:size(ori,1)
     if ~isempty(ori{i,1})
 %         try 
-            filenamet=[ori{i,1},'\',behavfile_list{i,1}];
+            filenamet=[ori{i,1},'\',behavfile_list{i}];
             load(filenamet);
             savedir=[des{i,1},'\',vn{i},'_Behav.mat'];
             copyfile(filenamet,savedir);
