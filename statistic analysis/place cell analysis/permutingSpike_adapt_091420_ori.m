@@ -1,5 +1,5 @@
 
-function [place_cells,all_infoScore] = permutingSpike_adapt_091420(neuron,behavpos,behavtime,temp,occThresh,binsize,small_velo,infosign)
+function [place_cells,infoScore] = permutingSpike_adapt_091420_ori(neuron,behavpos,behavtime,temp,occThresh,binsize,small_velo,infosign)
 
 if ~exist('occThresh','var') || isempty(occThresh)
 %     occThresh = 0.2; %061219 adjust code
@@ -18,11 +18,9 @@ end
 % necessarily mean they are place cells...
 
 nboot = 500;
-countTimeThresh = [0.1 inf]; % get rid of too quick trespass
+countTimeThresh = [0 inf];
 
 maxbehavROI=[0 0 max(behavpos(:,1)),max(behavpos(:,2))];
-
-neuron.S=C_to_peakS(neuron.C);
 thresh=0.1*max(neuron.S,[],2);
 
 [firingrateAll,countAll,~,countTime] = calculatingCellSpatialForSingleData_Suoqin(neuron,behavpos,behavtime,maxbehavROI,binsize,1:size(neuron.C,1),thresh,temp,[],[],countTimeThresh,small_velo);
@@ -30,17 +28,12 @@ thresh=0.1*max(neuron.S,[],2);
 infoPerSecondnull = zeros(length(firingrateAll),1);
 infoPerSpikenull = infoPerSecondnull;
 
-% h=fspecial('gaussian',10,1);
-
 for j = 1:length(firingrateAll)
     MeanFiringRateAll= sum(sum(countAll{j}))/sum(sum(countTime));
     if isempty(firingrateAll{j})
         continue;
     end
-    
-%     frt=firingrateAll{j};
-    frt=filter2DMatrices(firingrateAll{j},1);
-    [infoPerSecondnull(j), infoPerSpikenull(j)] = Doug_spatialInfo(frt,MeanFiringRateAll, countTime,occThresh);
+    [infoPerSecondnull(j), infoPerSpikenull(j)] = Doug_spatialInfo(firingrateAll{j},MeanFiringRateAll, countTime,occThresh);
 end
 
 % time0 = neuron.time;
@@ -50,13 +43,11 @@ C0 = neuron.C;
 infoPerSecondboot = zeros(length(firingrateAll),nboot);
 infoPerSpikeboot = infoPerSecondboot;
 
-fr_all={};
-tic;
-for nE = 1:nboot
+parfor nE = 1:nboot
 
     neuronboot=neuron.copy;
-    S1=trunk_shuffle_data(S0,100); % shuffle neuron time series, shuffle its correspondance with behavpos
-    C1=trunk_shuffle_data(C0,100);
+    S1=trunk_shuffle_data_ori(S0,100); % shuffle neuron time series, shuffle its correspondance with behavpos
+    C1=trunk_shuffle_data_ori(C0,100);
     
     neuronboot.S = S1;
     neuronboot.C = C1;
@@ -67,13 +58,9 @@ for nE = 1:nboot
 
     for j = 1:length(firingrateAllt)
         MeanFiringRateAll= sum(sum(countAllt{1,j}))/sum(sum(countTimet));
-%         frt=firingrateAllt{j};
-        frt=filter2DMatrices(firingrateAllt{j},1);
-        [infoPerSecondbootT(j), infoPerSpikebootT(j)] = Doug_spatialInfo(frt,MeanFiringRateAll, countTimet,occThresh);
+        [infoPerSecondbootT(j), infoPerSpikebootT(j)] = Doug_spatialInfo(firingrateAllt{j},MeanFiringRateAll, countTimet,occThresh);
     end
     infoPerSecondboot(:,nE) = infoPerSecondbootT; infoPerSpikeboot(:,nE) = infoPerSpikebootT;
-    fr_all{nE}=firingrateAllt;
-    toc;
 end
 
 infoScoreSecondboot = [infoPerSecondnull,infoPerSecondboot];
@@ -102,17 +89,3 @@ if isequal(infosign,'spk')
     TinfoPerSecond2 = sortrows(TinfoPerSecond,{'infoScore'},{'descend'});
     place_cells = TinfoPerSecond2.neuron(TinfoPerSecond2.infoScore > TinfoPerSecond2.thresh);
 end
-if isequal(infosign,'all')
-    infoScore1 = infoScoreSecondboot;      
-    infoScore2 = infoScoreSpikeboot; 
-%     infoScore(neuron_lowFR,:) = [];
-%     infoScoreThresh = quantile(infoScore(:),0.95);
-    infoScoreThresh1 = quantile(infoScore1,0.95,2);
-    infoScoreThresh2 = quantile(infoScore2,0.95,2);
-%     infoScoreThresh = quantile(infoScore,0.99,2);% change to 0.99 061219
-    
-    place_cells = [find(infoPerSecondnull>infoScoreThresh1),find(infoPerSpikenull>infoScoreThresh2)];
-end
-
-
-all_infoScore=[infoPerSecondnull,infoPerSpikenull];

@@ -35,6 +35,7 @@ function main_streamline_func(experiemnt_type,orirange)
         timestamp_name{i,1}=['timestamp_',vname{i},'.dat'];
     end
 
+    orirange=[1:length(orilocation)];
     %% move videos
     tic;
     [templatename,videoname]=video_concatenate_new_large_data(orilocation,destination,vname,orirange,msprefix);
@@ -51,7 +52,7 @@ function main_streamline_func(experiemnt_type,orirange)
         foldernamestruct{i}=[foldername{i},foldernamestruct{i}];
     end
 %     [num2read,foldernamestruct,data_shape]=cross_condition_info_extraction(destination,[1:length(unique(destination))]);
-    [foldernamestruct,num2read,data_shape]=HPC_generated_info(foldername);
+%     [foldernamestruct,num2read,data_shape]=HPC_generated_info(foldername);
     save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','ROIlist','objlist','path','infoname')
     %% save var
     %% extract behavior
@@ -59,7 +60,7 @@ function main_streamline_func(experiemnt_type,orirange)
 
     %% neuron extraction
     foldername=unique(destination);
-    for i=[1:length(foldername)]
+    for i=[9,11]
         cd(foldername{i});
         SCOUT_pipeline_single(foldernamestruct{i},num2read{i},data_shape{i}); % changed to BatchEndoscopeauto_adapted_new_kevin 040420
 %         SCOUT_pipeline_full(foldernamestruct{i},num2read,data_shape)    
@@ -70,12 +71,13 @@ function main_streamline_func(experiemnt_type,orirange)
     save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','folderName','condName','namePartst','behavName','timestampName','msCamid','behavCamid','numpartsall','ROIlist','objlist','path','infoname');
 
     %% manual delete bad neurons
-%     for i=[1 4 16]
-%         load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
-% %         save([folderName{i},'\','further_processed_neuron_extraction_final_result_ori.mat'],'neuron','-v7.3');
-%         [neuron,del_ind]=manual_deletion_main(neuron,10);
-%         save([folderName{i},'\','further_processed_neuron_extraction_final_result.mat'],'neuron','-v7.3');
-%     end
+    del_ind={};
+    for i=[9:length(folderName)]
+        load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
+        [neuron,del_ind{i}]=manual_deletion_main(neuron,10);
+%         save([folderName{i},'\','further_processed_neuron_extraction_final_result_manual_del.mat'],'neuron','-v7.3');
+    end
+    uisave({'del_ind'},'manual_temporal_del');
     %% auto delete bad neurons
 %     for i=1:length(folderName)
 %         load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
@@ -128,10 +130,10 @@ function main_streamline_func(experiemnt_type,orirange)
     %processingparts(25):individual condition cluster parts
     %processingparts(26):distance time relationship
     processingparts=zeros(1,26);
-    processingparts([])=1;
+%     processingparts([])=1;
     behavled='red';
 
-    HDAC_AD_automatic_processing_main_new_092719(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[1:13],10,[],10,10);
+    HDAC_AD_automatic_processing_main_new_092719(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[1:20],10,[],10,10);
     % HDAC_AD_automatic_processing_main_new_linear_track(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[1:length(folderName)],10,[],10,10);
 
     if isequal(experiemnt_type,'OLM')||isequal(experiemnt_type,'ORM')

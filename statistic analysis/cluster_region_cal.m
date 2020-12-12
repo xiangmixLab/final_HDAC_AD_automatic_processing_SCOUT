@@ -16,6 +16,7 @@ boundary_all={};
 for gp=1:length(unique(group1))
     %colored region step 1: get the centroid of one cluster
     cen=round(neuronIndividuals_new{session}.centroid(group1==gp,:));
+    cen=[cen;cen-neighboor_dis;cen+neighboor_dis]; % added 12/11/20
     [IDX, isnoise]=DBSCAN_modified(cen,neighboor_dis+2*neighboor_dis_std,3,'dis');
 %     [IDX, isnoise]=DBSCAN_modified(cen,quantile(neighboor_dis,0.9),3,'dis');
     

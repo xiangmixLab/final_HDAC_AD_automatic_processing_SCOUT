@@ -10,7 +10,7 @@ if ~isempty(obj)
     for i=1:size(obj,1)
         obj(i,:)=round(obj(i,:)./binsize);
         obj(i,2)=size(fr,1)-obj(i,2); % axes problems
-        plot(obj(i,1),obj(i,2),'.','MarkerSize',48,'color','k');
+        plot(obj(i,1),obj(i,2),'.','MarkerSize',24,'color','k');
         hold on;
     end
 end

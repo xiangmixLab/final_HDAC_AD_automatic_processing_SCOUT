@@ -1,5 +1,5 @@
 
-function [place_cells,all_infoScore] = permutingSpike_adapt_091420(neuron,behavpos,behavtime,temp,occThresh,binsize,small_velo,infosign)
+function [place_cells,all_infoScore] = permutingSpike_adapt_112320_ori(neuron,behavpos,behavtime,temp,occThresh,binsize,small_velo,infosign)
 
 if ~exist('occThresh','var') || isempty(occThresh)
 %     occThresh = 0.2; %061219 adjust code
@@ -17,7 +17,7 @@ end
 % trim low fr neurons, they tend to have high infoscore but that doesn't
 % necessarily mean they are place cells...
 
-nboot = 500;
+nboot = 100;
 countTimeThresh = [0.1 inf]; % get rid of too quick trespass
 
 maxbehavROI=[0 0 max(behavpos(:,1)),max(behavpos(:,2))];
@@ -55,8 +55,8 @@ tic;
 for nE = 1:nboot
 
     neuronboot=neuron.copy;
-    S1=trunk_shuffle_data(S0,100); % shuffle neuron time series, shuffle its correspondance with behavpos
-    C1=trunk_shuffle_data(C0,100);
+    S1=trunk_shuffle_data_ori(S0,100); % shuffle neuron time series, shuffle its correspondance with behavpos
+    C1=trunk_shuffle_data_ori(C0,100);
     
     neuronboot.S = S1;
     neuronboot.C = C1;

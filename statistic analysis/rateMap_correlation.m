@@ -31,6 +31,9 @@ if ~isempty(fs2)
             rm_corr=corrcoef(cell1t,cell2t);
             rateMap_corr(ctt)=rm_corr(1,2);
             ctt=ctt+1;
+        else
+            rateMap_corr(ctt)=0;
+            ctt=ctt+1;
         end
      end
 else

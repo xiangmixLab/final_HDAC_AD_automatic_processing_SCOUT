@@ -1,4 +1,4 @@
-
+                                                                                                                                                                                                 
 %% shape conversion follows Long-term plasticity in hippocampal place-cell representation of environmental geometry, nature 2002 okeefe's lab
 function [behav2c]=align_behav_shape(behav_non_circle,behav_circle)
 

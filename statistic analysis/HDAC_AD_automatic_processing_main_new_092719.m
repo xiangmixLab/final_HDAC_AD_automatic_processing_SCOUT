@@ -41,7 +41,7 @@ function [objname,num_of_conditions,binsize,in_use_objects]=HDAC_AD_automatic_pr
 
         % obj name determine
         nameset={'ori','mov','upd','nov'};
-        objnamecell=objnamedec_092719(behavcell,nameset);
+%         objnamecell=objnamedec_092719(behavcell,nameset);
         
         % head direction
 %         [headorientationcell,in_use_objects,unique_obj_name_map]=HDAC_AD_headtoobj(behavcell,num_of_all_individual_conditions,ikk,objnamecell,-1,maxbehavROI);
@@ -68,7 +68,7 @@ function [objname,num_of_conditions,binsize,in_use_objects]=HDAC_AD_automatic_pr
                 mkdir(conditionfolder1{i});
                 %% rearrange behav
                 [behavpos,behavtime,objects]=HDAC_AD_behavdata_gen(behavcell,timeindex,i,behavled);
-                objname=objnamecell(:,i);
+%                 objname=objnamecell(:,i);
 
                 %% what we should know is that, count ,countTime and firingrate and behav.position have same coordination system, left up
                 %% hence, count, countTime and firingrate's data is same to real position data
