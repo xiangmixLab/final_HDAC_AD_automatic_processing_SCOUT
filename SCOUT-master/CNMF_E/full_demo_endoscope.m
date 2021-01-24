@@ -74,7 +74,7 @@ Fs = 15;             % frame rate
 % temporal downsampling factor
 gSig = 3;           % width of the gaussian kernel, which can approximates the average neuron shape
 if ~isfield(extraction_options,'gSiz')||isempty(extraction_options)
-    gSiz = 24;          % maximum diameter of neurons in the image plane. larger values are preferred.
+    gSiz = 16;          % maximum diameter of neurons in the image plane. larger values are preferred.
 else
     gSiz=extraction_options.gSiz;
     
@@ -108,7 +108,7 @@ neuron.JS=JS;
 
 neuron_full.JS=JS;
 if ~isfield(extraction_options,'merge_thr')||isempty(extraction_options.merge_thr);
-    merge_thr = [.75, .8, -1];     % thresholds for merging neurons; [spatial overlap ratio, temporal correlation of calcium traces, spike correlation]
+    merge_thr = [0.5, 0.6, -1];     % thresholds for merging neurons; [spatial overlap ratio, temporal correlation of calcium traces, spike correlation]
 else
     merge_thr=extraction_options.merge_thr;
 end
@@ -117,7 +117,7 @@ dmin =[-1,15];
 %% options for running deconvolution
 neuron_full.options.deconv_flag = true;
 neuron_full.options.deconv_options = struct('type', 'ar1', ... % model of the calcium traces. {'ar1', 'ar2'}
-    'method', 'foopsi', ... % method for running deconvolution {'foopsi', 'constrained', 'thresholded'}
+    'method', 'thresholded', ... % method for running deconvolution {'foopsi', 'constrained', 'thresholded'} % follow the most original CNMFE BY suoqin, use thresholded instead of foopsi
     'smin', -5, ...         % minimum spike size. When the value is negative, the actual threshold is abs(smin)*noise level
     'optimize_pars', true, ...  % optimize AR coefficients
     'optimize_b', true, ...% optimize the baseline);
@@ -161,7 +161,7 @@ else
     K=extraction_options.max_neurons;
 end
 if ~isfield(extraction_options,'min_corr')||isempty(extraction_options.min_corr)
-    min_corr = 0.8;     % minimum local correlation for a seeding pixel
+    min_corr = 0.7;     % minimum local correlation for a seeding pixel
 else
     min_corr=extraction_options.min_corr;
 end
@@ -244,7 +244,7 @@ thresh = 10;     % threshold for detecting frames with large cellular activity. 
 bg_neuron_ratio = 1.5;  % spatial range / diameter of neurons
 
 % parameters, estimate the spatial components
-update_spatial_method = 'hals';  % the method for updating spatial components {'hals', 'hals_thresh', 'nnls', 'lars'}
+update_spatial_method = 'hals'; % follow ther most original CNMFE- suoqin code, use hals_thresh % hals_thresh delete all neurons % the method for updating spatial components {'hals', 'hals_thresh', 'nnls', 'lars'}
 Nspatial = 5;       % this variable has different meanings:
 %1) udpate_spatial_method=='hals' or 'hals_thresh',
 %then Nspatial is the maximum iteration
@@ -271,6 +271,16 @@ while miter <= maxIter
     cnmfe_update_BG;
     fprintf('Time cost in estimating the background:        %.2f seconds\n', toc);
     
+    % correct the Ysignal a bit to remove high intensity singular pixels
+    % that is artifact
+    Ysignal(Ysignal>quantile(Ysignal(:),0.9996))=nan;
+    Ysignal(Ysignal<quantile(Ysignal(:),0.0005))=nan;
+    for yi=1:size(Ysignal,3)
+        yt=squeeze(Ysignal(:,:,yi));
+        yt=fillmissing(yt,'linear');
+        Ysignal(:,:,yi)=yt;
+    end
+    fprintf('Time correcting Ysignal:        %.2f seconds\n', toc);
     % neuron.playMovie(Ysignal); % play the video data after subtracting the background components.
     
     %% update spatial & temporal components
@@ -295,7 +305,7 @@ while miter <= maxIter
         %temporal
         Ysignal(isnan(Ysignal))=0;
         Ysignal(Ysignal==inf)=0;
-        Ysignal(Ysignal==-inf)=0; % multiple cases may lead to failure
+        Ysignal(Ysignal==-inf)=0; % these cases may crash updateTemporal_endoscope
         
         neuron.updateTemporal_endoscope(Ysignal);
         try
