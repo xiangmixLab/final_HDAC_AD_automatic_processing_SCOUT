@@ -17,14 +17,16 @@ function main_streamline_func(experiemnt_type,orirange)
     [unique_prefix]=prefix_check(orilocation{1});
     behavprefix=unique_prefix{1};
     msprefix=unique_prefix{2};
+    
+    orirange=[1:length(orilocation)];
 
     %% ROI selection
-    for i=[1:length(orilocation)]
+    for i=orirange
         ROIlist{i}=ROIdetermineManual_older_ver(orilocation{i},behavprefix)
     end
 
     %% obj selection
-    for i=[1:length(orilocation)]
+    for i=orirange
         objlist{i}=objSelectManual(orilocation{i},behavprefix,ROIlist{i})
     end
     [vname, destination, orilocation,ROIlist,objlist]=arrange_vname(orilocation,destination,ROIlist,objlist,vname,uni_vname);
@@ -35,49 +37,65 @@ function main_streamline_func(experiemnt_type,orirange)
         timestamp_name{i,1}=['timestamp_',vname{i},'.dat'];
     end
 
-    orirange=[1:length(orilocation)];
     %% move videos
     tic;
-    [templatename,videoname]=video_concatenate_new_large_data(orilocation,destination,vname,orirange,msprefix);
+    [templatename,videoname]=video_concatenate_new_large_data(orilocation,destination,vname,[31],msprefix);
     toc;
     %% motion correction
-    runrigid1_automaticadapted_strline_new(templatename,videoname,orirange,{[4,12]});
+    parfor k=1:length(orirange)
+        runrigid1_automaticadapted_strline_new(templatename,videoname,k,{[4,12]});
+    end
 %     motion_correction_main_adapted(videoname,orirange)
 
     %% cross condition alignment
     foldername=unique(destination);
-    for i=1:length(foldername)
+    for i=1:length(folderName{i})
         cd(foldername{i});
         [num2read{i},foldernamestruct{i},data_shape{i}]=video_registration_main_adapted_local(false,1,'corr',true,[],[]);
-        foldernamestruct{i}=[foldername{i},foldernamestruct{i}];
+        foldernamestruct{i}=[foldername{i},'\',foldernamestruct{i}];
     end
 %     [num2read,foldernamestruct,data_shape]=cross_condition_info_extraction(destination,[1:length(unique(destination))]);
 %     [foldernamestruct,num2read,data_shape]=HPC_generated_info(foldername);
-    save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','ROIlist','objlist','path','infoname')
+    save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','ROIlist','objlist','path','infoname','behavprefix','msprefix')
     %% save var
     %% extract behavior
     [behavfile_list]=Miniscope_behav_extraction_auto(orilocation,vname,behavprefix,orirange,'ROIlist',ROIlist,'List',objlist,real_arena_size,'rgb');
+    save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','ROIlist','objlist','path','infoname','behavfile_list','behavprefix','msprefix');
 
     %% neuron extraction
-    foldername=unique(destination);
-    for i=[9,11]
-        cd(foldername{i});
+    folderName=unique(destination);
+    tic;
+    for i=[1:length(folderName)]
+        cd(folderName{i});
         SCOUT_pipeline_single(foldernamestruct{i},num2read{i},data_shape{i}); % changed to BatchEndoscopeauto_adapted_new_kevin 040420
 %         SCOUT_pipeline_full(foldernamestruct{i},num2read,data_shape)    
+        toc;
     end
     
     %% project data info generation
     [folderName,condName,namePartst,behavName,timestampName,msCamid,behavCamid,numpartsall]=file_info_generation(orilocation,destination,timestamp_name,vname,1,behavfile_list);
-    save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','folderName','condName','namePartst','behavName','timestampName','msCamid','behavCamid','numpartsall','ROIlist','objlist','path','infoname');
-
+    save([path,'\',infoname],'orilocation','destination','vname','timestamp_name','uni_vname','real_arena_size','num2read','foldernamestruct','data_shape','templatename','videoname','folderName','condName','namePartst','behavName','timestampName','msCamid','behavCamid','numpartsall','ROIlist','objlist','path','infoname','behavprefix','msprefix');
+    
     %% manual delete bad neurons
     del_ind={};
-    for i=[9:length(folderName)]
+    for i=[8]
         load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
-        [neuron,del_ind{i}]=manual_deletion_main(neuron,10);
+        [neuron,del_ind{i}]=manual_deletion_main(neuron,12);
 %         save([folderName{i},'\','further_processed_neuron_extraction_final_result_manual_del.mat'],'neuron','-v7.3');
     end
-    uisave({'del_ind'},'manual_temporal_del');
+    uisave({'del_ind'},'manual_temporal_del_020521');
+
+    %% manual delete based on footprint
+    neuron_all={};
+    for i=1:length(folderName)
+        load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
+        neuron_all{i}=neuron.copy;
+    end
+    for i=1:length(folderName)
+        [~,del_idx_t]=neuron_delete_based_on_footprint(neuron_all{i});
+        del_ind{i}=unique([del_ind{i},del_idx_t]);
+    end
+    uisave({'del_ind'},'manual_temporal_del_020521');
     %% auto delete bad neurons
 %     for i=1:length(folderName)
 %         load([folderName{i},'\','further_processed_neuron_extraction_final_result.mat']);
@@ -133,7 +151,7 @@ function main_streamline_func(experiemnt_type,orirange)
 %     processingparts([])=1;
     behavled='red';
 
-    HDAC_AD_automatic_processing_main_new_092719(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[1:20],10,[],10,10);
+    HDAC_AD_automatic_processing_main_new_092719(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[8],10,[],10,10);
     % HDAC_AD_automatic_processing_main_new_linear_track(namePartst,folderName,behavName,timestampName,msCamid,behavCamid,numpartsall,num2read,processingparts,behavled,[1:length(folderName)],10,[],10,10);
 
     if isequal(experiemnt_type,'OLM')||isequal(experiemnt_type,'ORM')
